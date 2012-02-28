@@ -23,7 +23,7 @@ Register a variable method:
 Validate existance of your method and echo:
 	if( registry()->hasVaribleName() ) echo 'Has ' . registry()->getVaribleName();
 
-You can still you registry()->myvariableName = 'Some value for this variable';
+You can still use registry()->myvariableName = 'Some value for this variable';
 	
 == Installation ==
 
