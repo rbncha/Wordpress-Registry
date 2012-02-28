@@ -9,11 +9,11 @@ Use this plugin to store anything in registry such as variable/values, objects, 
 
 == Description ==
 
-The main reason for building this plugin was because wordpress doesn’t readily have a central registry system where things can be stored such as variable values, objects, arrays. Which can be retrieved from a global space. This plugin basically tries to reduce db access/storage frequency and lessen the repeating declarations of variables and etc. It is something quite similar to Magento registry "Mage_Registry", but very light version.
+The main reason for building this plugin was because wordpress doesn't readily have a central registry system where things can be stored such as variable values, objects, arrays. Which can be retrieved from a global space. This plugin basically tries to  lessen the repeating declarations of variables and etc. It is something quite similar to Magento registry "Mage_Registry", but very light version.
 
 Hope this could be of some use.
 
-Usage it very easy and neat:
+Usage is very easy, neat and straight forward:
 
 Register a variable method:
 	registry()->setVariableName('this is my variable');
@@ -22,9 +22,11 @@ Register a variable method:
 Validate existance of your method and echo:
 	if( registry()->hasVaribleName() ) echo 'Has ' . registry()->getVaribleName();
 
+You can still you registry()->myvariableName = 'Some value for this variable';
+	
 == Installation ==
 
-1. Upload Wordpress Registry to the `/wp-content/plugins/` directory
+1. Upload Wordpress Registry to the '/wp-content/plugins/' directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Changelog ==
