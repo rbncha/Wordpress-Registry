@@ -14,13 +14,12 @@ Author URI: http://www.rubin.com.np
 add_action( 'init', 'registry_init', -1000 );
 
 function registry_init(){
-	if( ! is_object($GLOBALS['_system_registry_']) ) $GLOBALS['_system_registry_'] = new systemRegistry();
+	if( ! isset($GLOBALS['_system_registry_']) || ! is_object($GLOBALS['_system_registry_']) ) $GLOBALS['_system_registry_'] = new systemRegistry();
 }
 
 function registry(){
 	return $GLOBALS['_system_registry_'];
 }
-
 
 class systemRegistry
 {
@@ -75,4 +74,41 @@ class systemRegistry
 
 		throw new Exception("Call to undefined method " . get_class($this) . '::' . $name);
     }
+	
+	public function request()
+	{
+		if(! registry()->hasWpRequestHandler_() ){
+			registry()->setWpRequestHandler_(new Wordpress_Http_Request);
+		}
+		
+		return registry()->getWpRequestHandler_();
+	}
+}
+
+
+/**
+ * Better handler for GET, POST requests
+ */
+
+class Wordpress_Http_Request
+{
+	public function getParam ($key, $default = false)
+	{
+		return isset( $_GET[$key] ) ? $_GET[$key] : $default;
+	}
+	
+	public function getParams()
+	{
+		return $_GET;
+	}
+	
+	public function getPost ($key, $default = false)
+	{
+		return isset( $_GET[$key] ) ? $_GET[$key] : $default;
+	}
+	
+	public function getPosts()
+	{
+		return $_POST;
+	}
 }
