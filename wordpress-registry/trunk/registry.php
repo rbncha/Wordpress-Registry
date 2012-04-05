@@ -1,7 +1,7 @@
 <?php
 /**
  * @package Wordpress Registry
- * @version 2.0
+ * @version 2.1
  */
 /*
 Plugin Name: Wordpress Registry
