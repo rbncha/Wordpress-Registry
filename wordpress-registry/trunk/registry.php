@@ -1,13 +1,13 @@
 <?php
 /**
  * @package Wordpress Registry
- * @version 2.1
+ * @version 2.0
  */
 /*
 Plugin Name: Wordpress Registry
 Description: Use this plugin to store anything in registry such as variable/values, objects, array etc which you can get from plugins and theme files. As the plugin runs (most probably) before any plugins is initialized. So you use it to get/store values even from plugins.
 Author: Rubin Shrestha
-Version: 2.1
+Version: 2.0
 Author URI: http://www.rubin.com.np
 */
 
@@ -104,7 +104,7 @@ class Wordpress_Http_Request
 	
 	public function getPost ($key, $default = false)
 	{
-		return isset( $_GET[$key] ) ? $_GET[$key] : $default;
+		return isset( $_POST[$key] ) ? $_POST[$key] : $default;
 	}
 	
 	public function getPosts()
