@@ -39,6 +39,9 @@ For GET and POST request handler use it like this:
 
 == Changelog ==
 
+= 2.2 =
+* Quick fix for POST values not being retrieved
+
 = 2.1 =
 * Introduction of better GET and POST request hanlder.
 * Notice error removed while initializing plugin itself
