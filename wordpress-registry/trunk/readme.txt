@@ -3,7 +3,7 @@ Contributors: rbncha
 Tags: registry, globals, scope, $_POST, $_GET, request, http
 Requires at least: 1.5
 Tested up to: 3.3.1
-Stable tag: 2.1
+Stable tag: 2.2
 
 Use this plugin to store anything in registry such as variable/values, objects, array etc which you can get from plugins and theme files. As the plugin runs (most probably) before any plugins is initialized. So you use it to get/store values even from plugins.
 
