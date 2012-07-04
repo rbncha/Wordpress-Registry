@@ -3,35 +3,43 @@ Contributors: rbncha
 Tags: registry, globals, scope, $_POST, $_GET, request, http
 Requires at least: 1.5
 Tested up to: 3.4.1
-Stable tag: 2.2
+Stable tag: 2.4
 
 Store anything in registry for global-scope such as variable/values to access from plugins/theme. Get/check values of $_GET and $_POST variables.
 
 == Description ==
 
-The main reason for building this plugin was because wordpress doesn't readily have a central registry system where things can be stored such as variable values, objects, arrays. Which can be retrieved from a global space. This plugin basically tries to  lessen the repeating declarations of variables and etc. It is something quite similar to Magento registry "Mage_Registry", but very light version.
+The main reason for building this plugin is because wordpress doesn't readily have a central registry system where things can be stored such as variable values, objects, arrays. Which can be retrieved from a global space. This plugin basically tries to  lessen the repeating declarations of variables and etc. It is something quite similar to Magento registry "Mage_Registry", but very light version.
 
 This plugin can also be used as GET and POST request parameters handler. The benefit is, you don't have to check isset($_GET['myparam']) or isset($_POST['myparam']). If the param is not set, it will return a default value you supplied in second param. By default, the default value is false.
+
+Handle the session data as easy as never before. Save to session, check existance, get, unset it easily using dynamic methods.
 
 Hope this could be of some use.
 
 Usage is very easy, neat and straight forward:
 
-Register a variable method:
-	registry()->setVariableName('this is my variable');
+Register a dynamic method on the fly:
+	registry()->setDynamicMethodName('this is my value');
 	registry()->setMyName('My Name is Rubin Shrestha');
 
 Validate existance of your method and echo:
-	if( registry()->hasVaribleName() ) echo 'Has ' . registry()->getVaribleName();
+	if( registry()->hasDynamicMethodName() ) echo 'Has ' . registry()->getDynamicMethodName();
 
-You can still use registry()->myvariableName = 'Some value for this variable';
+Unset the dynamic method:
+registry()->unsDynamicMethodName(); after this, if you echo registry()->getDynamicMethodName() it will return null;
 
 For GET and POST request handler use it like this:
 
 * For $_GET, you can simply call registry()->request()->getParam('param_key', [default value if any, else blank, will return false]);
+* To check if the page type is $_POST use if( registry()->request()->isPost() ) { //do your stuffs here }
 * For $_POST, you can simply call registry()->request()->getPost('param_key', [default value if any, else blank; will return false]);
 * You can also do registry()->request()->getParams() and registry()->request()->getPosts();
-* To check if the page type is $_POST use if( registry()->request()->isPost() ) { //do your stuffs here }
+* You can also add request object scope variable, registry()->request()->setVariableName('this is my value');. Get the value by registry()->request()->getVariableName();
+
+Session handler:
+
+Handle the data in session as easy as registry()->session()->setDynamicMethodName('this is my value'); and get it as registry()->session()->getDynamicMethodName(); Unset it registry()->session()->unsDynamicMethodName();
 	
 == Installation ==
 
@@ -39,6 +47,8 @@ For GET and POST request handler use it like this:
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Changelog ==
+= 2.4 =
+* registry()->request()->session() handler hadded
 = 2.3 =
 * registry()->request()->isPost() method added to check if a page request is 
 = 2.2 =

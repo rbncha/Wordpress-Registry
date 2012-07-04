@@ -1,27 +1,27 @@
 <?php
 /**
  * @package Wordpress Registry
- * @version 2.3
+ * @version 2.4
  */
 /*
 Plugin Name: Wordpress Registry
 Description: Use this plugin to store anything in registry such as variable/values, objects, array etc which you can get from plugins and theme files. As the plugin runs (most probably) before any plugins is initialized. So you use it to get/store values even from plugins.
 Author: Rubin Shrestha
-Version: 2.3
+Version: 2.4
 Author URI: http://www.rubin.com.np
 */
 
 add_action( 'init', 'registry_init', -1000 );
 
 function registry_init(){
-	if( ! isset($GLOBALS['_system_registry_']) || ! is_object($GLOBALS['_system_registry_']) ) $GLOBALS['_system_registry_'] = new systemRegistry();
+	if( ! isset($GLOBALS['_system_registry_']) || ! is_object($GLOBALS['_system_registry_']) ) $GLOBALS['_system_registry_'] = new Wordpress_Registry();
 }
 
 function registry(){
 	return $GLOBALS['_system_registry_'];
 }
 
-class systemRegistry
+abstract class Wordpress_Registry_Abstract
 {
 	private $_data = array();
 	
@@ -47,6 +47,13 @@ class systemRegistry
 		return (bool) isset($this->_data[$key]);
 	}
 	
+	public function unsetData($key)
+	{
+		if($this->hasData($key)) unset($this->_data[$key]);
+		
+		return $this;
+	}
+	
 	public function __get($key)
     {
         return $this->getData($key);
@@ -70,18 +77,38 @@ class systemRegistry
 			case 'set':
 				$this->setData($key, $arguments[0]);
 				return $this;
+			case 'uns':
+				return $this->unsetData($key);
 		}
 
 		throw new Exception("Call to undefined method " . get_class($this) . '::' . $name);
     }
+}
+
+class Wordpress_Registry extends Wordpress_Registry_Abstract
+{
+	public function __construct()
+	{
+		//initialize session
+		$this->session();
+	}
 	
 	public function request()
 	{
-		if(! registry()->hasWpRequestHandler_() ){
-			registry()->setWpRequestHandler_(new Wordpress_Http_Request);
+		if(! $this->hasWpRequestHandler_() ){
+			$this->setWpRequestHandler_(new Wordpress_Registry_Request);
 		}
 		
-		return registry()->getWpRequestHandler_();
+		return $this->getWpRequestHandler_();
+	}
+	
+	public function session()
+	{
+		if(! $this->hasWpSessionHandler_() ){
+			$this->setWpSessionHandler_(new Wordpress_Registry_Session);
+		}
+		
+		return $this->getWpSessionHandler_();
 	}
 }
 
@@ -90,7 +117,7 @@ class systemRegistry
  * Better handler for GET, POST requests
  */
 
-class Wordpress_Http_Request
+class Wordpress_Registry_Request extends Wordpress_Registry_Abstract
 {
 	public function getParam ($key, $default = false)
 	{
@@ -118,4 +145,40 @@ class Wordpress_Http_Request
 		
 		return false;
 	}
+}
+
+class Wordpress_Registry_Session extends Wordpress_Registry_Abstract
+{
+	public function __construct()
+	{
+		if( !session_id() ) session_start();
+		
+		if( !isset($_SESSION['_Wordpress_Registry_Session']) ) $_SESSION['_Wordpress_Registry_Session'] = array();
+		
+		$this->initSessionData();
+	}
+	
+	public function setData($key, $value)
+    {
+        parent::setData($key, $value);
+		$_SESSION['_Wordpress_Registry_Session'][$key] = $value;
+		
+        return $this;
+    }
+	
+	/**
+	 * Maintains session data
+	 *
+	 */
+	protected function initSessionData()
+	{
+		if( is_array($_SESSION['_Wordpress_Registry_Session']) ){
+			foreach($_SESSION['_Wordpress_Registry_Session'] as $key => $value){
+				parent::setData($key, $value);
+			}
+		}
+		
+		return $this;
+	}
+	
 }
