@@ -5,7 +5,7 @@ Requires at least: 1.5
 Tested up to: 3.4.1
 Stable tag: 2.2
 
-Store anything in registry for global-scope such as variable/values, objects, array etc which you can get from plugins and theme files. Get/check values of your $_GET and $_POST variables.
+Store anything in registry for global-scope such as variable/values, objects, array etc to access from plugins and theme. Get/check values of $_GET and $_POST variables.
 
 == Description ==
 
@@ -31,6 +31,7 @@ For GET and POST request handler use it like this:
 * For $_GET, you can simply call registry()->request()->getParam('param_key', [default value if any, else blank, will return false]);
 * For $_POST, you can simply call registry()->request()->getPost('param_key', [default value if any, else blank; will return false]);
 * You can also do registry()->request()->getParams() and registry()->request()->getPosts();
+* To check if the page type is $_POST use if( registry()->request()->isPost() ) { //do your stuffs here }
 	
 == Installation ==
 
