@@ -5,7 +5,7 @@ Requires at least: 1.5
 Tested up to: 3.4.1
 Stable tag: 2.2
 
-Store anything in registry for global-scope such as variable/values, objects, array etc to access from plugins and theme. Get/check values of $_GET and $_POST variables.
+Store anything in registry for global-scope such as variable/values to access from plugins/theme. Get/check values of $_GET and $_POST variables.
 
 == Description ==
 
