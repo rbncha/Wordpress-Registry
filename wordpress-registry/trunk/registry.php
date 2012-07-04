@@ -5,7 +5,7 @@
  */
 /*
 Plugin Name: Wordpress Registry
-Description: Use this plugin to store anything in registry such as variable/values, objects, array etc which you can get from plugins and theme files. As the plugin runs (most probably) before any plugins is initialized. So you use it to get/store values even from plugins.
+Description: Store anything in registry for global-scope such as variable/values to access from plugins/theme. Get/check values of $_GET and $_POST variables.
 Author: Rubin Shrestha
 Version: 2.4
 Author URI: http://www.rubin.com.np
