@@ -2,10 +2,10 @@
 Contributors: rbncha
 Tags: registry, globals, scope, $_POST, $_GET, request, http
 Requires at least: 1.5
-Tested up to: 3.4
+Tested up to: 3.4.1
 Stable tag: 2.2
 
-Use this plugin to store anything in registry such as variable/values, objects, array etc which you can get from plugins and theme files. As the plugin runs (most probably) before any plugins is initialized. So you use it to get/store values even from plugins.
+Store anything in registry for global-scope such as variable/values, objects, array etc which you can get from plugins and theme files. Get/check values of your $_GET and $_POST variables.
 
 == Description ==
 
@@ -38,7 +38,8 @@ For GET and POST request handler use it like this:
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Changelog ==
-
+= 2.3 =
+* registry()->request()->isPost() method added to check if a page request is 
 = 2.2 =
 * Quick fix for POST values not being retrieved
 
