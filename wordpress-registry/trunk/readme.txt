@@ -1,11 +1,11 @@
 === Wordpress Registry ===
 Contributors: rbncha
-Tags: registry, globals, scope, $_POST, $_GET, request, http
+Tags: registry, globals, scope, $_POST, $_GET, request, http, session
 Requires at least: 1.5
-Tested up to: 3.4.1
+Tested up to: 3.4.2
 Stable tag: 2.4
 
-Store anything in registry for global-scope such as variable/values to access from plugins/theme. Get/check values of $_GET and $_POST variables.
+Makes variables and values globally accessible from everywhere. Better handling of $_GET and $_POST. Session data management.
 
 == Description ==
 
