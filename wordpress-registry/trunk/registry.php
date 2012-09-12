@@ -5,7 +5,7 @@
  */
 /*
 Plugin Name: Wordpress Registry
-Description: Store anything in registry for global-scope such as variable/values to access from plugins/theme. Get/check values of $_GET and $_POST variables.
+Description: Makes variables and values globally accessible from everywhere. Better handling of $_GET and $_POST. Session data management.
 Author: Rubin Shrestha
 Version: 2.4
 Author URI: http://www.rubin.com.np
