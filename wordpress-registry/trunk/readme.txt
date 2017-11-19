@@ -2,7 +2,7 @@
 Contributors: rbncha
 Tags: registry, globals, scope, $_POST, $_GET, request, http, session
 Requires at least: 1.5
-Tested up to: 3.4.2
+Tested up to: 4.9
 Stable tag: 2.4
 
 Makes variables and values globally accessible from everywhere. Better handling of $_GET and $_POST. Session data management.
