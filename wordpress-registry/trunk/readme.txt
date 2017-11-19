@@ -46,6 +46,8 @@ Handle the data in session as easy as registry()->session()->setDynamicMethodNam
 1. Upload Wordpress Registry to the '/wp-content/plugins/' directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
+Compatible with Wordpress 4.9
+
 == Changelog ==
 = 2.4 =
 * registry()->request()->session() handler hadded
